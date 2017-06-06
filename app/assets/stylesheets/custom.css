@@ -1,0 +1,55 @@
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.full_width {
+  width:100%;
+}
+.inner-div {
+  background-color: #01d1fc;
+  margin-top: -15px;
+  margin-left: 8%;
+}
+
+.inner-div h2{
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.inner-div h6 {
+  font-size: 24px;
+  font-weight: 300;
+  padding-top: 11px;
+}
+
+.prod-desc {
+  margin-left: 8%;
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.prod-header {
+  margin: 0 auto;
+  width: 38%;
+}
+
+textarea {
+  resize: none;
+}

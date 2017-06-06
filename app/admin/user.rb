@@ -9,6 +9,7 @@ ActiveAdmin.register User do
 
   # customized index table
   index do
+    selectable_column
     id_column
     column :name
     column :email
