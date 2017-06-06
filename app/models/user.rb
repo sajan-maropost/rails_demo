@@ -5,6 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
+
+  # callbacks
+  after_create :send_welcome_mail
+
+  # validations
   validates :name, presence: true
-  validates :password_confirmation, presence: true, on: :create
+
+  # Instance methods
+  def send_welcome_mail
+    WelcomeMailer.welcome_email(self.name, self.email).deliver_now
+  end
 end
