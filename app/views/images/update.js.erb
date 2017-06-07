@@ -1,0 +1,17 @@
+<% unless @errors.present? %>
+  $('.error-div').remove();
+  var form_div = $("#<%= @image.id %>");
+  form_div.hide();
+  var name_span = form_div.siblings('.image-name').find('span');
+  name_span.text("<%= @image.name %>");
+  form_div.siblings('.image-name').show();
+<% else %>
+  var error_html = "<div class='error-div'>";
+  <% @errors.each do |error| %>
+    error_html += "<span class='error'><%= error %></span>"
+  <% end %>
+  error_html += '</div>'
+
+  var edit_form = $("#<%= @image.id %>").find('form');
+  edit_form.prepend($(error_html));
+<% end %>

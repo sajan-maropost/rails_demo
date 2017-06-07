@@ -1,0 +1,26 @@
+<div class="row mt-10">
+	<div class="well">
+
+		<% if @image.errors.any? %>
+        <% @image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
+
+	  <%= form_for @image, url: create_image_path, html: { multipart: true } do |f| %>
+	  	<div class="input-group width-30">
+        <%= f.text_field :name, class: "form-control", placeholder: "Image Name" %>
+      </div>
+      <br />
+	  	<div class="input-group width-30">
+        <label class="input-group-btn">
+          <span class="btn btn-primary">
+             Browse&hellip; <%= f.file_field :image, style: "display: none" %>
+          </span>
+        </label>
+        <input type="text" class="form-control" readonly>
+      </div>
+	    <%= f.submit "Upload", class: "btn btn-primary mt-10" %>
+	  <% end %>
+	</div>
+</div>

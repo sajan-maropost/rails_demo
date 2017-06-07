@@ -58,3 +58,6 @@ gem 'activeadmin'
 
 # to manage environment variables
 gem "figaro"
+
+gem "mini_magick"
+gem 'carrierwave', '~> 1.0'

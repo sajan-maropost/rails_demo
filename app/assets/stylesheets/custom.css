@@ -53,3 +53,18 @@ body {
 textarea {
   resize: none;
 }
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.ml-15 {
+  margin-left: 15px;
+}
+
+.width-30 {
+  width: 30%;
+}
+.edit-form-div {
+  display: none;
+}
