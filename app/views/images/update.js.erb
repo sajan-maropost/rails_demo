@@ -1,5 +1,5 @@
+$('.error-div').remove();
 <% unless @errors.present? %>
-  $('.error-div').remove();
   var form_div = $("#<%= @image.id %>");
   form_div.hide();
   var name_span = form_div.siblings('.image-name').find('span');

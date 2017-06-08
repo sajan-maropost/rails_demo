@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-sm-12 contact-form">
-    <%= form_for @query, url: create_contact_query_path, html: {class: "well form-horizontal"} do |f| %>
+    <%= form_for @query, url: create_contact_query_path, html: {remote: true, class: "well form-horizontal"} do |f| %>
 
       <% if @query.errors.any? %>
         <% @query.errors.full_messages.each do |message| %>
@@ -55,7 +55,7 @@
       	<div class="form-group">
       	  <label class="col-md-4 control-label"></label>
       	  <div class="col-md-6">
-          <%= button_tag class: "btn btn-warning", type: "submit" do %>
+          <%= button_tag data: { "disable-with": "Sending..." }, class: "btn btn-warning", type: "submit" do %>
             Send <span class="glyphicon glyphicon-send"></span>
           <% end %>
       	  </div>
@@ -67,5 +67,18 @@
 
 	<div class="col-md-6 col-sm-12 location">
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.4365143734726!2d76.69023331528314!3d30.70612659396505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feefe6ee844c7%3A0xc06ae60367c5ec42!2sQuarkcity+India+Pvt+Ltd.!5e0!3m2!1sen!2sin!4v1496745349465" width="600" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+
+	<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <span>Message sent successfully</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </div>

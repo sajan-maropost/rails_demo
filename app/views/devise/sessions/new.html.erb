@@ -9,6 +9,10 @@
     <div class="main-login main-center">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), 
           html: {class: "form-horizontal", id: "new_session"}) do |f| %>
+
+        <% flash.each do |key, value| %>
+          <div class="<%= flash_class(key) %>"><%= value %></div>
+        <% end %>
         <%= devise_error_messages! %>
         
         <div class="form-group">
@@ -45,3 +49,6 @@
     </div>
   </div>
 </div>
+<style type="text/css">
+  .flash_msg{display: none;}
+</style>

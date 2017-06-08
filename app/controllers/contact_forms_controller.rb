@@ -7,13 +7,18 @@ class ContactFormsController < ApplicationController
 
   def create
   	@query = UserQuery.new(user_query_params)
-    if @query.save
-      flash[:notice] = "Message sent successfully"
-      ContactMailer.acknowledge_mail(user_query_params[:email]).deliver_now
-  		redirect_to root_path
-  	else
-  		render 'new'
-  	end
+
+    respond_to do |format|
+      if @query.save
+        ContactMailer.acknowledge_mail(user_query_params[:email]).deliver_now
+        format.html { redirect_to :back, notice: "Message sent successfully" }
+        format.js
+    	else
+        format.html { render 'new' }
+        format.js
+    	end
+    end
+
   end
 
   private

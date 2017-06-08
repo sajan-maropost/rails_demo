@@ -1,0 +1,14 @@
+$('.error-div').remove();
+var edit_form = $(".contact-form").find('form');
+<% unless @query.errors.present? %>
+  edit_form.trigger("reset");
+  $('#successModal').modal('show');
+<% else %>
+  var error_html = "<div class='error-div'>";
+  <% @query.errors.full_messages.each do |error| %>
+    error_html += "<span class='error'><%= error %></span><br />"
+  <% end %>
+  error_html += '</div>'
+
+  edit_form.prepend($(error_html));
+<% end %>
