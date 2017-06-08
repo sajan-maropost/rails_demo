@@ -12,6 +12,10 @@ $(document).on('turbolinks:load', function() {
 		}
 	}, "Phone number can contain numericals only");
 
+	jQuery.validator.addMethod("emailRegex", function(value, element) {
+	    return /^[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+$/i.test(value);
+	}, "Please enter a valid email");
+
 	$( "#new_user_query" ).validate( {
 		rules: {
 			"user_query[name]": {
@@ -20,7 +24,7 @@ $(document).on('turbolinks:load', function() {
 			},
 			"user_query[email]": {
 				required: true,
-				email: true
+				emailRegex: true
 			},
 			"user_query[mobile]": {
 				onlyNumber: true,
@@ -35,8 +39,7 @@ $(document).on('turbolinks:load', function() {
 				required: "Please enter your name"
 			},
 			"user_query[email]": {
-				required: "Please enter your email",
-				email: "Please enter a valid email"
+				required: "Please enter your email"
 			},
 			"user_query[mobile]": {
 				minlength: "Phone number should be minimum 10 digit"
