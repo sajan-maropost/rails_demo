@@ -40,17 +40,6 @@
               <li><p class="navbar-text">Welcome, <%= "#{current_user.name}" %></p></li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
             </ul>
-          <% else %>
-          <%= link_to "Sign Up", new_user_registration_path , class: "navbar-right btn btn-primary mt-10" %>
-            <%= form_for(:user, :url => session_path(:user), html: { class: "navbar-form navbar-right" }) do |f| %>
-              <div class="form-group">
-                <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
-              </div>
-              <%= f.submit 'Sign in', class: "btn btn-success" %>
-            <% end %>
           <% end %>
         </div>
       </div>

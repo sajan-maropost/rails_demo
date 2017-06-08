@@ -1,4 +1,6 @@
 class ContactFormsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
   	@query = UserQuery.new
   end
