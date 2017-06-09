@@ -40,6 +40,7 @@
           <% if user_signed_in? %>
             <ul class="nav navbar-nav navbar-right">
               <li><p class="navbar-text">Welcome, <%= "#{current_user.name}" %></p></li>
+              <li><%= link_to('Change Password', edit_user_registration_path) %></li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
             </ul>
           <% end %>
