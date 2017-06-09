@@ -6,9 +6,10 @@ class WelcomeMailer < ApplicationMailer
     	mail(to: @user_email, subject: 'Welcome to Awesome Site')
 	end
 
-	def welcome_email(user_name, user_email)
+	def welcome_email(user_name, user_email, password)
 		@name = user_name
 		@user_email = user_email
+		@password = password
 		mail(to: @user_email, subject: 'Registration Successfull')
 	end
 end

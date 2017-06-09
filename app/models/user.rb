@@ -6,14 +6,15 @@ class User < ApplicationRecord
          :confirmable, :lockable
 
 
-  # callbacks
-  after_create :send_welcome_mail
-
   # validations
   validates :name, presence: true
 
-  # Instance methods
-  def send_welcome_mail
-    WelcomeMailer.welcome_email(self.name, self.email).deliver_now
+  # class methods
+  def self.generate_password
+    pass = ''
+    pass += ('a'..'z').to_a.sample(2).join('')
+    pass += (0..9).to_a.sample(7).join('')
+    pass += ('A'..'Z').to_a.sample(1).join('')
   end
+
 end
