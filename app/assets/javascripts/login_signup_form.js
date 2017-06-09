@@ -92,4 +92,41 @@ $(document).on('turbolinks:load', function() {
 			$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
 		}
 	} );
+
+	$( "#new_password" ).validate( {
+		rules: {
+			"user[password]": {
+				required: true
+			},
+			"user[password_confirmation]": {
+				required: true,
+				equalTo: "#user_password"
+			}
+		},
+		messages: {
+			"user[password]": {
+				required: "Please enter your new password"
+			},
+			"user[password_confirmation]": {
+				required: "Please confirm your password",
+				equalTo: "Password confirmation does not match"
+			}
+		},
+		errorElement: "span",
+		errorPlacement: function ( error, element ) {
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element.parent() );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+	} );
 });
