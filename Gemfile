@@ -61,3 +61,5 @@ gem "figaro"
 
 gem "mini_magick"
 gem 'carrierwave', '~> 1.0'
+gem 'roo'
+

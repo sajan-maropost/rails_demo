@@ -37,4 +37,21 @@ class ImagesController < ApplicationController
   	end
   end
 
+  def import
+    response = MyImage.import(params[:file])
+    message_string = "#{response[:success]} files imported successfully.<br/>"
+    message_string += "#{response[:failed]} files failed to import."
+    if response[:failed] > 0
+      message_string += "<br /> Failed images detail:<br />"
+      response[:failed_rows].each do |row|
+        message_string += "Row Id: #{row.keys[0]} <br />"
+        row[row.keys[0]].each do |message|
+          message_string += message + "<br />"
+        end
+      end
+    end
+    flash[:notice] = message_string
+    redirect_to gallery_path
+  end
+
 end

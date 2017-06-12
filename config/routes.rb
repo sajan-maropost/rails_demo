@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get '/gallary/upload', to: 'images#new', as: "new_image"
   post 'images/create', as: "create_image"
   put '/images/update', to: "images#update", as: "update_image"
+  post '/images/import', to: 'images#import', as: "import_images"
 end

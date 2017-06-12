@@ -23,4 +23,20 @@
 	    <%= f.submit "Upload", class: "btn btn-primary mt-10" %>
 	  <% end %>
 	</div>
+
+  <div class="well">
+  <p>Select CSV file with name and url header</p>
+
+    <%= form_tag import_images_path, multipart: true do %>
+      <div class="input-group width-30">
+        <label class="input-group-btn">
+          <span class="btn btn-primary">
+             Browse&hellip; <%= file_field_tag :file, style: "display: none", accept: ".csv" %>
+          </span>
+        </label>
+        <input type="text" class="form-control" readonly>
+      </div>
+      <%= submit_tag "Import", class: "btn btn-primary mt-10" %>
+    <% end %>
+  </div>
 </div>
