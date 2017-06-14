@@ -12,9 +12,11 @@ class ContactFormsController < ApplicationController
       if @query.save
         ContactMailer.acknowledge_mail(user_query_params[:email]).deliver_now
         format.html { redirect_to :back, notice: "Message sent successfully" }
+        format.json { render json: { status: "Success", message: "Successful", code: 200 } }
         format.js
     	else
         format.html { render 'new' }
+        format.json { render json: { status: "Failure", message: @query.errors.full_messages, code: 500 } }
         format.js
     	end
     end
