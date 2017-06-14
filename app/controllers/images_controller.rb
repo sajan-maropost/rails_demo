@@ -11,13 +11,16 @@ class ImagesController < ApplicationController
 
   def create
   	@image = MyImage.new(name: params['my_image'][:name], image: params['my_image'][:image])
-  	p @image
-  	if @image.save
-  		flash[:notice] = "Image uploaded successfully"
-  		redirect_to gallery_path
-  	else
-  		render 'new'
-  	end
+
+    respond_to do |format|
+    	if @image.save
+        format.html { redirect_to gallery_path, notice: 'Image uploaded successfully'}
+        format.json { render json: { status: "Success", message: "Successful", code: 200 } }
+    	else
+        format.html { render 'new' }
+        format.json { render json: { status: "Failure", message: @image.errors.full_messages, code: 500 } }
+    	end
+    end
   end
 
   def update
