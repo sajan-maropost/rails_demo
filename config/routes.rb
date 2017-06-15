@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   get '/about-us', to: 'pages#about_us', as: 'about_us'
 
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/gallery', to: 'images#index', as: "gallery"
   get '/gallary/upload', to: 'images#new', as: "new_image"
-  post '/images/create', to: 'images#create', as: "create_image"
+  post 'images/create', as: "create_image"
   put '/images/update', to: "images#update", as: "update_image"
   post '/images/import', to: 'images#import', as: "import_images"
 end
