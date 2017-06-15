@@ -1,10 +1,41 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  skip_before_action :authenticate_user_from_token, only: [:create]
+
   # POST /resource
   def create
     @auto_password = User.generate_password
-    super
-    WelcomeMailer.welcome_email(resource.name, resource.email, @auto_password).deliver_now
+
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      WelcomeMailer.welcome_email(resource.name, resource.email, @auto_password).deliver_now
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_to do |format|
+          format.html { respond_with resource, location: after_sign_up_path_for(resource) }
+          format.json { render json: { status: "Success", message: "Successful", code: 200 } }
+        end
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_to do |format|
+          format.html { respond_with resource, location: after_inactive_sign_up_path_for(resource) }
+          format.json { render json: { status: "Success", message: "Successful, please activate account", code: 200 } }
+        end
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_to do |format|
+          format.html { respond_with resource }
+          format.json { render json: { status: "Failure", message: resource.errors.full_messages, code: 500 } }
+        end
+    end
+
   end
 
   protected 
