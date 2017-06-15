@@ -1,20 +1,13 @@
 class SessionsController < Devise::SessionsController
 
-  skip_before_action :authenticate_user_from_token
-
   def create
-    self.resource = warden.authenticate!(auth_options)
-    sign_in(resource_name, resource)
-    set_flash_message!(:notice, :signed_in)
-    yield resource if block_given?
     respond_to do |format|
-      format.html do 
-        respond_with resource, location: after_sign_in_path_for(resource)
-      end
-
-      format.json do
-        respond_with_authentication_token(resource)
-      end
+       format.any(*navigational_formats) { super }
+       format.json do
+         self.resource = warden.authenticate!(auth_options)
+         sign_in(resource_name, resource)
+         respond_with_authentication_token(resource)
+       end
     end
   end
 
