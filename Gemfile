@@ -62,4 +62,4 @@ gem "figaro"
 gem "mini_magick"
 gem 'carrierwave', '~> 1.0'
 gem 'roo'
-
+gem 'simple_token_authentication', '~> 1.0'
