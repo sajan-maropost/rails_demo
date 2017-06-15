@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post 'images/create', as: "create_image"
   put '/images/update', to: "images#update", as: "update_image"
   post '/images/import', to: 'images#import', as: "import_images"
+
+  get '/image_detail/:id', to: 'images#image_detail', as: 'image_detail'
 end
