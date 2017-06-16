@@ -63,3 +63,8 @@ gem "mini_magick"
 gem 'carrierwave', '~> 1.0'
 gem 'roo'
 gem 'simple_token_authentication', '~> 1.0'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
