@@ -63,24 +63,34 @@ class ImagesController < ApplicationController
   end
 
   def image_detail
-    @image = MyImage.find_by_id(params[:id])
+    # checking if image id contains non numeric character
+    if params[:id].match(/\A\d+\z/i).blank? # means it does have some non numeric character
+      message = "Image id can be numeric only"
+      respond_to do |format|
+        format.html { redirect_to gallery_path, notice: message }
+        format.json { render json: { status: "Failure", message: message, code: 500 } }
+      end
+    else
+      @image = MyImage.find_by_id(params[:id])
 
-    respond_to do |format|
-      if @image.present?
-        format.html
-        format.json { 
-          render json: { 
-            status: "Success",
-            message: "Successful",
-            data: {name: @image.name, url: request.protocol + request.host_with_port + @image.image_url},
-            code: 200 
-          } 
-        }
-      else
-        format.html { redirect_to gallery_path, notice: "No image found" }
-        format.json { render json: { status: "Failure", message: "Image not found", code: 500 } }
+      respond_to do |format|
+        if @image.present?
+          format.html
+          format.json { 
+            render json: { 
+              status: "Success",
+              message: "Successful",
+              data: {name: @image.name, url: request.protocol + request.host_with_port + @image.image_url},
+              code: 200 
+            } 
+          }
+        else
+          format.html { redirect_to gallery_path, notice: "No image found" }
+          format.json { render json: { status: "Failure", message: "No image found", code: 500 } }
+        end
       end
     end
+        
   end
 
 end
