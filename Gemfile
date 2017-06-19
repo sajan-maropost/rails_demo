@@ -66,6 +66,8 @@ gem 'simple_token_authentication', '~> 1.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
 end
 
 gem 'sidekiq'
