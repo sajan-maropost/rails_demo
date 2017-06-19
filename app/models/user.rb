@@ -18,4 +18,10 @@ class User < ApplicationRecord
     pass += ('A'..'Z').to_a.sample(1).join('')
   end
 
+  # devise overrides
+
+  # to send mails in background using ActiveJob and sidekiq
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end

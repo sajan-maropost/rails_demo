@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
 
   root 'pages#about_us'
 
@@ -18,6 +19,10 @@ Rails.application.routes.draw do
   post '/images/import', to: 'images#import', as: "import_images"
 
   get '/image_detail/:id', to: 'images#image_detail', as: 'image_detail'
+
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   match '*foo', :format => true, :constraints => {:format => :json}, 
     :to => lambda {|env| [404, {}, ['{"error": "page not found", "code": "404"}']] }, via: :all
