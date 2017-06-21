@@ -71,3 +71,4 @@ group :development, :test do
 end
 
 gem 'sidekiq'
+gem 'rails-controller-testing'

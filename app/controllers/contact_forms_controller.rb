@@ -11,7 +11,7 @@ class ContactFormsController < ApplicationController
     respond_to do |format|
       if @query.save
         ContactMailer.acknowledge_mail(user_query_params[:email]).deliver_later
-        format.html { redirect_to :back, notice: "Message sent successfully" }
+        format.html { redirect_back fallback_location: create_contact_query_url, notice: "Message sent successfully" }
         format.json { render json: { status: "Success", message: "Successful", code: 200 } }
         format.js
     	else
