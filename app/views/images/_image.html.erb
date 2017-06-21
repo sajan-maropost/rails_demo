@@ -1,0 +1,23 @@
+<% cache(image, expires_in: 5.minutes) do %>
+  <div class="col-sm-3">
+    <%= image_tag image.image_url(:preview) %>
+    <br />
+
+    <div class="image-name mt-10">
+      <span><%= image.name %></span>
+      <button class="edit-btn">Edit</button>
+    </div>
+
+    <div class="edit-form-div mt-10" id="<%= image.id%>">
+      <%= form_for image, url: update_image_path, method: :put, html: { remote: true, class: "edit_image_form" } do |f| %>
+        <%= hidden_field_tag :id, image.id %>
+        <%= f.text_field :name %>
+        <br />
+        
+        <%= f.submit "Update", data: { "disable-with": "Saving..." }, class: "update-btn mt-10" %>
+        <button type="button" class="cancel-btn mt-10">Cancel</button>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>
