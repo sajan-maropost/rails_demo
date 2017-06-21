@@ -72,3 +72,4 @@ end
 
 gem 'sidekiq'
 gem 'rails-controller-testing'
+gem 'dalli'
