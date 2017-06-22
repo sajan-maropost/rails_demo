@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get '/image_detail/:id', to: 'images#image_detail', as: 'image_detail'
 
+  get '/images/count', to: 'images#total_count'
+  
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'
   end

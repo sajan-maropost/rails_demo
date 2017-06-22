@@ -90,7 +90,14 @@ class ImagesController < ApplicationController
         end
       end
     end
-        
   end
 
+  def total_count
+    sleep(1); # To test the loader
+    @count = MyImage.all.size
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end

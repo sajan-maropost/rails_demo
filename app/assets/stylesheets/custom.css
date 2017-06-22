@@ -68,3 +68,26 @@ textarea {
 .edit-form-div {
   display: none;
 }
+
+.loader{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #FF6700;
+}
+
+.red-font{
+  color: red;
+}
+.green-font{
+  color: green;
+}
+.count-div{
+  min-height: 45px;
+}

@@ -9,4 +9,9 @@ $(document).on('turbolinks:load', function() {
 		$(this).parents('.edit-form-div').hide();
 		$(this).parents('.edit-form-div').siblings(".image-name").show();
 	})
+
+  $.ajax({
+    url: "/images/count",
+    cache: false
+  });
 })
